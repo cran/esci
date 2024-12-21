@@ -321,8 +321,7 @@ jamovimdiff2x2Class <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Clas
 
 
         myplot$scales$scales[[2]]$labels <- mylabs
-        myplot <- myplot + ggplot2::guides(x = ggh4x::guide_axis_nested(delim = " - "))
-
+        myplot <- myplot + guides(x = legendry::guide_axis_nested(key = " - "))
 
         print(myplot)
         TRUE
@@ -946,6 +945,10 @@ jamovi_mdiff_2x2 <- function(
 
   # Do analysis, then post any notes that have emerged
   estimate <- try(do.call(what = call, args = args))
+
+  #self$results$debug$setVisible(TRUE)
+  #self$results$debug$setContent(estimate)
+  #return()
 
   # For summary data, store in a list based on outcome_variable_name
   if (!is(estimate, "try-error")) {
